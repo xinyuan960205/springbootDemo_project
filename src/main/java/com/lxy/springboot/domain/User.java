@@ -1,11 +1,18 @@
 package com.lxy.springboot.domain;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 
-public class User {
+import java.io.Serializable;
+
+
+public class User implements Serializable {
+    @TableId(value = "user_id",type= IdType.AUTO)
     private int userId;
     private String userName;
+    private String Password;
     private String userAge;
-    private double userMoney;
+    private String Role;
 
     public int getUserId() {
         return userId;
@@ -23,6 +30,14 @@ public class User {
         this.userName = userName;
     }
 
+    public String getPassword() {
+        return Password;
+    }
+
+    public void setPassword(String password) {
+        Password = password;
+    }
+
     public String getUserAge() {
         return userAge;
     }
@@ -31,11 +46,11 @@ public class User {
         this.userAge = userAge;
     }
 
-    public double getUserMoney() {
-        return userMoney;
+    public String getRole() {
+        return Role;
     }
 
-    public void setUserMoney(double userMoney) {
-        this.userMoney = userMoney;
+    public void setRole(String role) {
+        Role = role;
     }
 }
