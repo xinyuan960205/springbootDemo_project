@@ -1,6 +1,6 @@
 package com.lxy.springboot.utils;
 
-import com.lxy.springboot.domain.User;
+import com.lxy.springboot.domain.Staff;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -19,11 +19,12 @@ public class JwtUser implements UserDetails {
     }
 
     // 写一个能直接使用user创建jwtUser的构造器
-    public JwtUser(User user) {
-        id = user.getUserId();
-        username = user.getUserName();
-        password = user.getPassword();
-        authorities = Collections.singleton(new SimpleGrantedAuthority(user.getRole()));
+    public JwtUser(Staff staff) {
+        id = staff.getStaffId();
+        username = staff.getStaffAccount();
+        password = staff.getStaffPassword();
+        //authorities = Collections.singleton(new SimpleGrantedAuthority(user.getRole()));
+        authorities = Collections.singleton(new SimpleGrantedAuthority("ROLE_USER"));
     }
 
     // 获取权限信息，目前博主只会拿来存角色。。
@@ -73,7 +74,6 @@ public class JwtUser implements UserDetails {
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
-                ", authorities=" + authorities +
                 '}';
     }
 }

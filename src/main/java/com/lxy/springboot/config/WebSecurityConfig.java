@@ -39,9 +39,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable()
                 .authorizeRequests()
-                // 测试用资源，需要验证了的用户才能访问
-                .antMatchers("/tasks/**").authenticated()
-                // 其他都放行了
+                // 这是定义不能放行的
+                .antMatchers("/user").authenticated()
+                // 这是定义可以放行的
                 .anyRequest().permitAll()
                 .and()
                 .addFilter(new JWTAuthenticationFilter(authenticationManager()))
